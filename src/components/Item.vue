@@ -8,9 +8,9 @@
       type="number"
       min="0"
       v-model="count"
-      @change="cl"
+      @change="onChange"
     >
-    {{item.count}}
+
     <label
       class="color-box"
       :style="{background: item.color}"
@@ -35,8 +35,7 @@ export default {
   },
   methods: {
     ...mapMutations(['changeCount']),
-    cl() {
-      // console.log(this.count)
+    onChange() {
       this.changeCount({
         id: this.item.id,
         changedCount: this.count

@@ -54,6 +54,9 @@ export default createStore({
   },
   actions: {
   },
+  getters: {
+    getLists: state => state.lists
+  },
   modules: {
   }
 })

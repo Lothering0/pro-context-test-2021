@@ -1,7 +1,7 @@
 <template>
   <ul class="panel">
     <li
-      v-for="list in lists"
+      v-for="list in getLists"
       :key="list.id"
     >
       <List :list="list" />
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import List from '@/components/List'
 
 export default {
@@ -18,9 +18,9 @@ export default {
   components: {
     List
   },
-  computed: mapState({
-    lists: state => state.lists
-  })
+  computed: mapGetters([
+    'getLists'
+  ])
 }
 </script>
 
