@@ -66,7 +66,7 @@ export default createStore({
   },
   getters: {
     getLists: state => state.lists,
-    getIsIndeterminateList: state => id => {
+    getIsListChecked: state => id => {
       const currentItems = state
         .lists
         .find(list => list.id === id)
@@ -75,12 +75,11 @@ export default createStore({
       const value = currentItems
         .filter(item => item.checked)
 
-      console.log(value.length, currentItems.length)
-      if (value.length > 0 && value.length < currentItems.length) {
-        return true
-      } else {
-        return false
-      }
+      if (value.length === currentItems.length) return true
+
+      return value.length > 0 && value.length < currentItems.length
+        ? 'indeterminate'
+        : false
     }
   }
 })

@@ -12,7 +12,9 @@
 
     <input
       type="checkbox"
-      :indeterminate="getIsIndeterminateList(list.id)"
+      :indeterminate="getIsListChecked(list.id) === 'indeterminate'"
+      :checked="getIsListChecked(list.id)"
+      @click="onClick"
     >
     {{list.title}}
 
@@ -34,17 +36,16 @@ export default {
   name: 'List',
   data() {
     return {
-      showItems: true,
-      indeterminate: true
+      showItems: true
     }
   },
   components: {
     Item
   },
-  computed: mapGetters(['getIsIndeterminateList']),
-  mounted() {
-    console.log(this.getIsIndeterminateList(this.list.id))
+  methods: {
+    onClick() {}
   },
+  computed: mapGetters(['getIsListChecked']),
   props: {
     list: Object
   }
