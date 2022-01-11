@@ -1,21 +1,27 @@
 <template>
   <ul>
     <li
-      v-for="list in lists"
-      :key="list.name"
+      v-for="{title, items} in lists"
+      :key="title"
     >
-      {{list.title}}
+      {{title}}
+      <Item
+        v-for="item in items"
+        :item="item"
+        :key="item.title"
+      />
     </li>
   </ul>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import Item from '@/components/Item'
 
 export default {
   name: 'LeftPanel',
-  mounted() {
-    console.log(this.$store)
+  components: {
+    Item
   },
   computed: mapState({
     lists: state => state.lists
