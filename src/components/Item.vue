@@ -2,12 +2,15 @@
   <li class="item">
     <input type="checkbox">
     {{item.title}}
+
     <input
       class="count"
       type="number"
       min="0"
-      :value="item.count"
+      v-model="count"
+      @change="cl"
     >
+    {{item.count}}
     <label
       class="color-box"
       :style="{background: item.color}"
@@ -18,10 +21,27 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'Item',
+  data() {
+    return {
+      count: this.item.count ?? 0
+    }
+  },
   props: {
     item: Object
+  },
+  methods: {
+    ...mapMutations(['changeCount']),
+    cl() {
+      // console.log(this.count)
+      this.changeCount({
+        id: this.item.id,
+        changedCount: this.count
+      })
+    }
   }
 }
 </script>
@@ -29,7 +49,7 @@ export default {
 <style scoped>
 .item {
   display: flex;
-  margin-left: 20px;
+  margin-left: 32px;
 }
 
 .count {

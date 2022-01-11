@@ -2,7 +2,7 @@
   <ul class="panel">
     <li
       v-for="list in lists"
-      :key="list.title"
+      :key="list.id"
     >
       <List :list="list" />
     </li>

@@ -1,13 +1,23 @@
 <template>
   <div>
-    <button class="hide_items" @click="showItems = !showItems">&gt;</button>
+    <button
+      class="hide_items"
+      :class="{
+        rotated: showItems
+      }"
+      @click="showItems = !showItems"
+    >
+      &gt;
+    </button>
+
     <input type="checkbox">
     {{list.title}}
+
     <template v-if="showItems">
       <Item
         v-for="item in list.items"
         :item="item"
-        :key="item.title"
+        :key="item.id"
       />
     </template>
   </div>
@@ -32,5 +42,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.rotated {
+  transform: rotate(90deg);
+}
 </style>
