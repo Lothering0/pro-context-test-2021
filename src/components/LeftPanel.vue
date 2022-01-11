@@ -1,53 +1,30 @@
 <template>
   <ul>
-    <li>List 1
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-      </ul>
-    </li>
-    <li>List 2
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-      </ul>
-    </li>
-    <li>List 3
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-      </ul>
-    </li>
-    <li>List 4
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-      </ul>
-    </li>
-    <li>List 5
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-      </ul>
+    <li
+      v-for="list in lists"
+      :key="list.name"
+    >
+      {{list.title}}
     </li>
   </ul>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  name: 'LeftPanel'
+  name: 'LeftPanel',
+  mounted() {
+    console.log(this.$store)
+  },
+  computed: mapState({
+    lists: state => state.lists
+  })
 }
 </script>
 
-<style>
+<style scoped>
+ul li {
+  margin-left: 20px;
+}
 </style>
