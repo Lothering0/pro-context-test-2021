@@ -1,6 +1,6 @@
 <template>
   <div class="panel">
-    <ul>
+    <ul class="lists">
       <li
         class="list"
         v-for="list in getLists"
@@ -41,6 +41,7 @@ export default {
 
 <style scoped>
 .list {
+  margin-bottom: 20px;
   padding: 7px 4px;
 
   border: 1px solid black;

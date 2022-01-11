@@ -1,5 +1,15 @@
 import { createStore } from 'vuex'
 
+function findItemById(state, id) {
+  for (let list of state.lists) {
+    try {
+      return list
+        .items
+        .find(item => item.id === id)
+    } catch (e) {}
+  }
+}
+
 export default createStore({
   state: {
     lists: [
@@ -42,25 +52,11 @@ export default createStore({
   },
   mutations: {
     changeCount(state, { id, changedCount }) {
-      for (let list of state.lists) {
-        try {
-          list
-            .items
-            .find(item => item.id === id)
-            .count = changedCount
-        } catch (e) {}
-      }
+      findItemById(state, id).count = changedCount
     },
     changeColor(state, { id, changedColor }) {
-      for (let list of state.lists) {
-        try {
-          list
-            .items
-            .find(item => item.id === id)
-            .color = changedColor
-        } catch (e) {}
-      }
-    }
+      findItemById(state, id).color = changedColor
+    },
   },
   actions: {
   },
