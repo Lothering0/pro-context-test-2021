@@ -50,6 +50,16 @@ export default createStore({
             .count = changedCount
         } catch (e) {}
       }
+    },
+    changeColor(state, { id, changedColor }) {
+      for (let list of state.lists) {
+        try {
+          list
+            .items
+            .find(item => item.id === id)
+            .color = changedColor
+        } catch (e) {}
+      }
     }
   },
   actions: {

@@ -8,14 +8,18 @@
       type="number"
       min="0"
       v-model="count"
-      @change="onChange"
+      @change="onChangeCount"
     >
 
     <label
       class="color-box"
       :style="{background: item.color}"
     >
-      <input type="color">
+      <input
+        type="color"
+        v-model="color"
+        @change="onChangeColor"
+      >
     </label>
   </li>
 </template>
@@ -27,18 +31,25 @@ export default {
   name: 'Item',
   data() {
     return {
-      count: this.item.count ?? 0
+      count: this.item.count ?? 0,
+      color: this.item.color ?? '#000000'
     }
   },
   props: {
     item: Object
   },
   methods: {
-    ...mapMutations(['changeCount']),
-    onChange() {
+    ...mapMutations(['changeCount', 'changeColor']),
+    onChangeCount() {
       this.changeCount({
         id: this.item.id,
         changedCount: this.count
+      })
+    },
+    onChangeColor() {
+      this.changeColor({
+        id: this.item.id,
+        changedColor: this.color
       })
     }
   }

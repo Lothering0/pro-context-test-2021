@@ -52,4 +52,8 @@ ul > li {
 
   padding: 40px 20px;
 }
+
+label {
+  cursor: pointer;
+}
 </style>
