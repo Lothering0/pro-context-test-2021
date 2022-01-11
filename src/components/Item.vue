@@ -46,6 +46,9 @@ export default {
   watch: {
     'item.count'(value) {
       this.count = value
+    },
+    'item.checked'(value) {
+      this.checked = value
     }
   },
   methods: {
@@ -97,5 +100,6 @@ input[type="color"] {
 
 input[type="number"] {
   width: 60px;
+  margin-right: 10px;
 }
 </style>

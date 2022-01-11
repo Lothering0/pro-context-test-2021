@@ -31,6 +31,20 @@ export default createStore({
             checked: true,
             count: 40,
             color: '#00F000'
+          },
+          {
+            id: 3,
+            title: 'Item 3',
+            checked: true,
+            count: 3,
+            color: '#9141AC'
+          },
+          {
+            id: 4,
+            title: 'Item 4',
+            checked: false,
+            count: 15,
+            color: '#C01C28'
           }
         ]
       },
@@ -40,11 +54,88 @@ export default createStore({
         checked: false,
         items: [
           {
-            id: 3,
-            title: 'Item 3',
+            id: 5,
+            title: 'Item 5',
             checked: true,
             count: 5,
             color: '#FF7800'
+          },
+          {
+            id: 6,
+            title: 'Item 6',
+            checked: false,
+            count: 17,
+            color: '#1C71D8'
+          },
+          {
+            id: 7,
+            title: 'Item 7',
+            checked: true,
+            count: 5,
+            color: '#33D17A'
+          },
+          {
+            id: 8,
+            title: 'Item 8',
+            checked: false,
+            count: 20,
+            color: '#3D3846'
+          },
+          {
+            id: 9,
+            title: 'Item 9',
+            checked: false,
+            count: 11,
+            color: '#77767b'
+          },
+          {
+            id: 10,
+            title: 'Item 10',
+            checked: true,
+            count: 1,
+            color: '#62A0EA'
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: 'List 3',
+        checked: false,
+        items: [
+          {
+            id: 11,
+            title: 'Item 11',
+            checked: false,
+            count: 5,
+            color: '#FFA348'
+          },
+          {
+            id: 12,
+            title: 'Item 12',
+            checked: false,
+            count: 10,
+            color: '#99C1F1'
+          },
+          {
+            id: 13,
+            title: 'Item 13',
+            checked: false,
+            count: 13,
+            color: '#ED333B'
+          },
+          {
+            id: 14,
+            title: 'Item 14',
+            checked: false,
+            count: 20,
+            color: '#F8E45C'
+          },
+          {
+            id: 15,
+            title: 'Item 15',
+            checked: false,
+            count: 0,
+            color: '#CDAB8F'
           }
         ]
       }
@@ -62,6 +153,18 @@ export default createStore({
     },
     changeChecked(state, { id, changedIsChecked }) {
       findItemById(state, id).checked = changedIsChecked
+    },
+
+    changeListIsChecked(state, id) {
+      const currentList = state
+        .lists
+        .find(list => list.id === id)
+
+      currentList.checked = !currentList.checked
+
+      currentList
+        .items
+        .map(item => item.checked = currentList.checked)
     }
   },
   getters: {

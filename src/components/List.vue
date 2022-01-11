@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="list">
     <button
       class="hide_items"
       :class="{
@@ -14,7 +14,7 @@
       type="checkbox"
       :indeterminate="getIsListChecked(list.id) === 'indeterminate'"
       :checked="getIsListChecked(list.id)"
-      @click="onClick"
+      @click="onClick(list.id)"
     >
     {{list.title}}
 
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import Item from '@/components/Item'
 
 export default {
@@ -43,7 +43,10 @@ export default {
     Item
   },
   methods: {
-    onClick() {}
+    ...mapMutations(['changeListIsChecked']),
+    onClick(id) {
+      this.changeListIsChecked(id)
+    }
   },
   computed: mapGetters(['getIsListChecked']),
   props: {
@@ -53,6 +56,10 @@ export default {
 </script>
 
 <style scoped>
+.list {
+  margin-bottom: 20px;
+}
+
 .rotated {
   transform: rotate(90deg);
 }
