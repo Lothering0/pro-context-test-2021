@@ -1,6 +1,10 @@
 <template>
   <li class="item">
-    <input type="checkbox">
+    <input
+      type="checkbox"
+      v-model="checked"
+      @change="onChangeIsChecked"
+    >
     {{item.title}}
 
     <input
@@ -32,14 +36,24 @@ export default {
   data() {
     return {
       count: this.item.count ?? 0,
-      color: this.item.color ?? '#000000'
+      color: this.item.color ?? '#000000',
+      checked: this.item.checked ?? false
     }
   },
   props: {
     item: Object
   },
+  watch: {
+    'item.count'(value) {
+      this.count = value
+    }
+  },
   methods: {
-    ...mapMutations(['changeCount', 'changeColor']),
+    ...mapMutations([
+      'changeCount',
+      'changeColor',
+      'changeChecked'
+    ]),
     onChangeCount() {
       this.changeCount({
         id: this.item.id,
@@ -50,6 +64,12 @@ export default {
       this.changeColor({
         id: this.item.id,
         changedColor: this.color
+      })
+    },
+    onChangeIsChecked() {
+      this.changeChecked({
+        id: this.item.id,
+        changedIsChecked: this.checked
       })
     }
   }

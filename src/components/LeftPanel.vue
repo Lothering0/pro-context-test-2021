@@ -18,9 +18,11 @@ export default {
   components: {
     List
   },
-  computed: mapGetters([
-    'getLists'
-  ])
+  computed: {
+    ...mapGetters([
+      'getLists'
+    ])
+  }
 }
 </script>
 

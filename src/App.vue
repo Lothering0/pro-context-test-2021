@@ -46,7 +46,8 @@ ul > li {
 }
 
 .panel {
-  min-width: 40%;
+  width: 40%;
+  height: 92vh;
 
   border: 1px solid black;
 

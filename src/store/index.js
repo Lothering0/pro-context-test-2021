@@ -1,12 +1,12 @@
 import { createStore } from 'vuex'
 
 function findItemById(state, id) {
-  for (let list of state.lists) {
-    try {
-      return list
-        .items
-        .find(item => item.id === id)
-    } catch (e) {}
+  for (const list of state.lists) {
+    const value = list
+      .items
+      .find(item => item.id === id)
+
+    if (value) return value
   }
 }
 
@@ -22,14 +22,14 @@ export default createStore({
             id: 1,
             title: 'Item 1',
             checked: false,
-            count: 0,
+            count: 10,
             color: '#000000'
           },
           {
             id: 2,
             title: 'Item 2',
-            checked: false,
-            count: 10,
+            checked: true,
+            count: 40,
             color: '#00F000'
           }
         ]
@@ -41,28 +41,30 @@ export default createStore({
         items: [
           {
             id: 3,
-            title: 'Item 1',
-            checked: false,
-            count: 0,
-            color: '#000000'
+            title: 'Item 3',
+            checked: true,
+            count: 5,
+            color: '#FF7800'
           }
         ]
       }
     ]
   },
   mutations: {
+    decrementCount(state, id) {
+      findItemById(state, id).count--
+    },
     changeCount(state, { id, changedCount }) {
       findItemById(state, id).count = changedCount
     },
     changeColor(state, { id, changedColor }) {
       findItemById(state, id).color = changedColor
     },
-  },
-  actions: {
+    changeChecked(state, { id, changedIsChecked }) {
+      findItemById(state, id).checked = changedIsChecked
+    }
   },
   getters: {
     getLists: state => state.lists
-  },
-  modules: {
   }
 })

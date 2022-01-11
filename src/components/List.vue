@@ -10,7 +10,10 @@
       &gt;
     </button>
 
-    <input type="checkbox">
+    <input
+      type="checkbox"
+      :indeterminate="true"
+    >
     {{list.title}}
 
     <template v-if="showItems">

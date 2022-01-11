@@ -11,6 +11,7 @@
         <ul
           class="items"
           v-for="item in list.items"
+          v-show="item.checked"
           :key="item.id"
         >
           <li
@@ -20,6 +21,7 @@
             :style="{
               background: item.color
             }"
+            @click="decrementCount(item.id)"
           >
           </li>
         </ul>
@@ -29,13 +31,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'RightPanel',
   computed: mapGetters([
     'getLists'
-  ])
+  ]),
+  methods: mapMutations(['decrementCount'])
 }
 </script>
 
@@ -59,5 +62,7 @@ export default {
 .item {
   width: 20px;
   height: 20px;
+
+  cursor: pointer;
 }
 </style>
