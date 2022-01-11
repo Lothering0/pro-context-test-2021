@@ -19,8 +19,20 @@ export default {
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Ubuntu;
+  margin: 0;
+}
+
 main {
   display: flex;
+  justify-content: space-between;
+
+  margin: 20px;
 }
 
 ul {
@@ -30,5 +42,14 @@ ul {
 
 ul > li {
   list-style: none;
+  margin: 0;
+}
+
+.panel {
+  min-width: 49%;
+
+  border: 1px solid black;
+
+  padding: 40px 20px;
 }
 </style>
