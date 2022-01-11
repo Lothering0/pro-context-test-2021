@@ -12,7 +12,7 @@
 
     <input
       type="checkbox"
-      :indeterminate="true"
+      :indeterminate="getIsIndeterminateList(list.id)"
     >
     {{list.title}}
 
@@ -27,17 +27,23 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Item from '@/components/Item'
 
 export default {
   name: 'List',
   data() {
     return {
-      showItems: true
+      showItems: true,
+      indeterminate: true
     }
   },
   components: {
     Item
+  },
+  computed: mapGetters(['getIsIndeterminateList']),
+  mounted() {
+    console.log(this.getIsIndeterminateList(this.list.id))
   },
   props: {
     list: Object

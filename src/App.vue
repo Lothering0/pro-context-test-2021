@@ -52,6 +52,8 @@ ul > li {
   border: 1px solid black;
 
   padding: 40px 20px;
+
+  overflow-x: auto;
 }
 
 label {
